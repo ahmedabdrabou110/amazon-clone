@@ -4,6 +4,7 @@ import Logo from "../../assets/header-logo.png";
 import searchIcon from "../../assets/icons/searchIcon.png";
 import ShoppingCart from "../../assets/icons/shopping-cart.png";
 import "./Header.css";
+import HeaderOption from "./HeaderOption";
 const Header = () => {
   return (
     <div className="header">
@@ -22,22 +23,12 @@ const Header = () => {
 
       <div className="header-nav">
         <Link to="/login">
-          <div className="header-option">
-            <div className="header-option__line_one">Hello Guest</div>
-            <div className="header-option__line_two">Sign In</div>
-          </div>
+          <HeaderOption option_one={"Hello Guest"} option_two="Sign In" />
         </Link>
         <Link to="/orders">
-          <div className="header-option">
-            <div className="header-option__line_one">Return </div>
-            <div className="header-option__line_two">& orders</div>
-          </div>
+          <HeaderOption option_one="Return" option_two="& orders" />
         </Link>
-
-        <div className="header-option">
-          <div className="header-option__line_one">Your </div>
-          <div className="header-option__line_two">Prime</div>
-        </div>
+        <HeaderOption option_one="Your" option_two="Prime" />
 
         <Link to="checkout">
           <div className="header-option__basket">

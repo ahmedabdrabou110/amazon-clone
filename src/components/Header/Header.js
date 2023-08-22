@@ -5,7 +5,13 @@ import searchIcon from "../../assets/icons/searchIcon.png";
 import ShoppingCart from "../../assets/icons/shopping-cart.png";
 import "./Header.css";
 import HeaderOption from "./HeaderOption";
+import { useAuth } from "../../Hooks/useAuth";
+import { auth } from "../../firebase";
 const Header = () => {
+  const { user } = useAuth();
+  const handleLogout = () => {
+    auth.signOut();
+  };
   return (
     <div className="header">
       <Link to="/">
@@ -22,8 +28,11 @@ const Header = () => {
       </div>
 
       <div className="header-nav">
-        <Link to="/login">
-          <HeaderOption option_one={"Hello Guest"} option_two="Sign In" />
+        <Link to={!user && "/login"} onClick={handleLogout}>
+          <HeaderOption
+            option_one={`Hello ${user ? user?.email : "Guest"}`}
+            option_two={`Sign ${user ? "Out" : "In"}`}
+          />
         </Link>
         <Link to="/orders">
           <HeaderOption option_one="Return" option_two="& orders" />

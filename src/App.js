@@ -4,6 +4,7 @@ import Header from "./components/Header/Header";
 import Login from "./components/Login/Login";
 import { auth } from "./firebase";
 import { useAuth } from "./Hooks/useAuth";
+import Home from "./components/Home/Home";
 
 const App = () => {
   const { dispatch } = useAuth();
@@ -25,7 +26,15 @@ const App = () => {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Header />} />
+        <Route
+          path="/"
+          element={
+            <>
+              <Header />
+              <Home />
+            </>
+          }
+        />
         <Route path="/login" element={<Login />} />
       </Routes>
     </div>

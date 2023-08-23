@@ -2,7 +2,22 @@ import React from "react";
 import "./Product.css";
 import Star from "../../assets/icons/star.png";
 import shortid from "shortid";
-const Product = ({ title, image, price, rating }) => {
+import { useAuth } from "../../Hooks/useAuth";
+const Product = ({ title, image, price, rating, id }) => {
+  const { dispatch, basket } = useAuth();
+  const addToBasket = () => {
+    dispatch({
+      type: "ADD_TO_BASKET",
+      item: {
+        id,
+        image,
+        title,
+        price,
+        rating,
+      },
+    });
+  };
+  console.log(basket);
   return (
     <div className="product">
       <div className="product-info">
@@ -21,8 +36,8 @@ const Product = ({ title, image, price, rating }) => {
             </p>
           ))}
       </div>
-      <img src={image} />
-      <button>Add to Basket</button>
+      <img src={image} alt="Image description" />
+      <button onClick={addToBasket}>Add to Basket</button>
     </div>
   );
 };

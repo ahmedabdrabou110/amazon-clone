@@ -8,7 +8,7 @@ import HeaderOption from "./HeaderOption";
 import { useAuth } from "../../Hooks/useAuth";
 import { auth } from "../../firebase";
 const Header = () => {
-  const { user } = useAuth();
+  const { user, basket } = useAuth();
   const handleLogout = () => {
     auth.signOut();
   };
@@ -43,7 +43,7 @@ const Header = () => {
           <div className="header-option__basket">
             <img src={ShoppingCart} alt="" />
             <span className="header-option__line_two header_basket__count">
-              5
+              {basket?.length || 0}
             </span>
           </div>
         </Link>
